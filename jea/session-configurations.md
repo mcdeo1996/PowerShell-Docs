@@ -82,20 +82,20 @@ RunAsVirtualAccountGroups = 'NetworkOperator', 'NetworkAuditor'
 
 
 For scenarios requiring the JEA user to access network resources such as other machines or web services, a group managed service account (gMSA) is a more appropriate identity to use.
-gMSA accounts give you a domain identity which can be used to authenticate against resources on any machine within the domain.
-The rights the gMSA account gives you is determined by the resources you are accessing.
-You will not automatically have admin rights on any machines or services unless the machine/service administrator has explicitly granted the gMSA account admin privileges.
+gMSA's give you a domain identity which can be used to authenticate against resources on any machine within the domain.
+The rights the gMSA gives you is determined by the resources you are accessing.
+You will not automatically have admin rights on any machines or services unless the machine/service administrator has explicitly granted the gMSA admin privileges.
 
 ```powershell
-# Configure JEA sessions to use the gMSA account in the local computer's domain with the sAMAccountName of 'MyJEAgMSA'
+# Configure JEA sessions to use the gMSA in the local computer's domain with the sAMAccountName of 'MyJEAgMSA'
 GroupManagedServiceAccount = 'Domain\MyJEAgMSA'
 ```
 
-gMSA accounts should only be used when access to network resources are required for a few reasons:
+gMSA's should only be used when access to network resources are required for a few reasons:
 
-- It is harder to trace back actions to a user when using a gMSA account since every user shares the same run-as identity. You will need to consult PowerShell session transcripts and logs to correlate users with their actions.
+- It is harder to trace back actions to a user when using a gMSA since every user shares the same run-as identity. You will need to consult PowerShell session transcripts and logs to correlate users with their actions.
 
-- The gMSA account may have access to many network resources which the connecting user does not need access to. Always try to limit effective permissions in a JEA session to follow the principle of least privilege.
+- The gMSA may have access to many network resources which the connecting user does not need access to. Always try to limit effective permissions in a JEA session to follow the principle of least privilege.
 
 > [!NOTE]
 > Group managed service accounts are only available in Windows PowerShell 5.1 or newer and on domain-joined machines.
